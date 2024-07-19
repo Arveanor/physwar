@@ -51,8 +51,8 @@ var pawns_spawned = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	team_gold = 5
 	spawn_location = self.global_position
+
 	ai_manager = ai_manager_script.new()
 	warrior_values = spawn_values_script.new()
 	archer_values = spawn_values_script.new()
@@ -83,27 +83,28 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(spawnCooldown <= 0):
-		choose_upgrades()
+		if teamId == 1:
+			choose_upgrades()
 		sling_pawn_group()
 		spawnCooldown = baseSpawnCooldown
 	else:
 		spawnCooldown = spawnCooldown - delta
 
 func evolve_unit(unit_type):
-	if unit_type == "warrior":
+	if unit_type.unit_type == "warrior":
 		warrior_values.damage += shock_infantry_damage_mod
 		warrior_values.health += shock_infantry_health_mod
 		warrior_values.mass += shock_infantry_weight_mod
 		warrior_values.movement_speed += shock_infantry_movement_speed_mod
 		warrior_values.threat_level += shock_infantry_threat_level_mod
-	elif unit_type == "flanker":
+	elif unit_type.unit_type == "flanker":
 		pawn_flanker_scene = load("res://scenes/pawn_charger.tscn")
 		flanker_values.damage += charger_damage_mod
 		flanker_values.health += charger_health_mod
 		flanker_values.mass += charger_weight_mod
 		flanker_values.movement_speed += charger_movement_speed_mod
 		flanker_values.max_velocity += charger_max_velocity_mod
-		
+
 func choose_upgrades(): #only meant for ai opponents
 	var lowest_cost
 	var selection

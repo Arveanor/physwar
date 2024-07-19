@@ -12,19 +12,24 @@ var spawn_point
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	actor_setup()
+
+func actor_setup():
+	await root.ready
+	
+	spawn_point = root.get_spawn(0)
 	melee_upgrade_panel = upgrade_panel_scene.instantiate()
 	melee_upgrade_panel.set_label_text("Powerful Warriors")
-	melee_upgrade_panel.unit_type = "warrior"
+	melee_upgrade_panel.unit_type = spawn_point.warrior_values
 	archer_upgrade_panel = upgrade_panel_scene.instantiate()
-	archer_upgrade_panel.unit_type = "archer"
+	archer_upgrade_panel.unit_type = spawn_point.archer_values
 	archer_upgrade_panel.set_label_text("Legendary Archers")
 	flanker_upgrade_panel = upgrade_panel_scene.instantiate()
-	flanker_upgrade_panel.unit_type = "flanker"
+	flanker_upgrade_panel.unit_type = spawn_point.flanker_values
 	flanker_upgrade_panel.set_label_text("Devastating Specialists")
 	self.add_child(melee_upgrade_panel)
 	current_panel = melee_upgrade_panel
-	spawn_point = root.get_spawn(0)
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
