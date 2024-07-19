@@ -33,4 +33,4 @@ func _on_mass_up_button_pressed():
 	unit_type.upgrade_mass(spawn_point)
 
 func _on_evolve_button_pressed():
-	spawn_point.evolve_unit(unit_type)
+	spawn_point.evolve_unit(unit_type.unit_type)

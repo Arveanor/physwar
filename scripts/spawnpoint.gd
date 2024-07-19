@@ -44,8 +44,8 @@ var shock_infantry_damage_mod = 1
 var shock_infantry_health_mod = 5
 var shock_infantry_weight_mod = 1.0
 var shock_infantry_movement_speed_mod = 70.0
-var shock_infantry_threat_level_mod = 1
-var shock_infantry_bravery_mod = 2
+var shock_infantry_threat_level_mod = 0
+var shock_infantry_bravery_mod = 0
 
 var pawns_spawned = 0
 
@@ -83,21 +83,22 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(spawnCooldown <= 0):
-		if teamId == 1:
-			choose_upgrades()
+		#if teamId == 1:
+			#choose_upgrades()
 		sling_pawn_group()
 		spawnCooldown = baseSpawnCooldown
 	else:
 		spawnCooldown = spawnCooldown - delta
 
 func evolve_unit(unit_type):
-	if unit_type.unit_type == "warrior":
-		warrior_values.damage += shock_infantry_damage_mod
-		warrior_values.health += shock_infantry_health_mod
-		warrior_values.mass += shock_infantry_weight_mod
-		warrior_values.movement_speed += shock_infantry_movement_speed_mod
-		warrior_values.threat_level += shock_infantry_threat_level_mod
-	elif unit_type.unit_type == "flanker":
+	if unit_type == "warrior":
+		pawnScene = load("res://scenes/pawn_spear.tscn")
+		#warrior_values.damage += shock_infantry_damage_mod
+		#warrior_values.health += shock_infantry_health_mod
+		#warrior_values.mass += shock_infantry_weight_mod
+		#warrior_values.movement_speed += shock_infantry_movement_speed_mod
+		#warrior_values.threat_level += shock_infantry_threat_level_mod
+	elif unit_type == "flanker":
 		pawn_flanker_scene = load("res://scenes/pawn_charger.tscn")
 		flanker_values.damage += charger_damage_mod
 		flanker_values.health += charger_health_mod

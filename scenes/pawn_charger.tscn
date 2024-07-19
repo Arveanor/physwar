@@ -17,7 +17,8 @@ radius = 30.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqsxu"]
 
 [node name="PawnCharger" type="RigidBody2D"]
-collision_mask = 2147483649
+collision_layer = 0
+collision_mask = 2147483651
 linear_damp_mode = 1
 script = ExtResource("1_j3e8k")
 

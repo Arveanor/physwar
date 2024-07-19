@@ -10,6 +10,7 @@ vertices = PackedVector2Array(785, 380, 1516, 781, 757, 921, 662, 617, 662, 478,
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 1), PackedInt32Array(3, 2, 9, 10), PackedInt32Array(0, 6, 1), PackedInt32Array(10, 9, 11, 12), PackedInt32Array(4, 12, 11, 7, 13), PackedInt32Array(7, 6, 13), PackedInt32Array(4, 13, 5)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-26, 8, 752, -122, 1526, 22, 1526, 790, 758, 932, -20, 798)])
 parsed_collision_mask = 2147483647
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ll8p"]
 resource_local_to_scene = true
@@ -44,7 +45,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
 rotation = -0.174533
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4ll8p")
 
 [node name="Wall2" type="StaticBody2D" parent="."]
@@ -55,7 +55,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
 rotation = 0.174533
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4ll8p")
 
 [node name="Wall3" type="StaticBody2D" parent="."]
@@ -66,7 +65,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
 rotation = 1.5708
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4ll8p")
 
 [node name="Wall4" type="StaticBody2D" parent="."]
@@ -77,7 +75,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4"]
 rotation = -0.174533
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4ll8p")
 
 [node name="Wall5" type="StaticBody2D" parent="."]
@@ -88,7 +85,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall5"]
 rotation = 0.174533
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4ll8p")
 
 [node name="Wall6" type="StaticBody2D" parent="."]
@@ -99,7 +95,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall6"]
 rotation = 1.5708
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4ll8p")
 
 [node name="Wall7" type="StaticBody2D" parent="."]
@@ -110,7 +105,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall7"]
 rotation = 1.5708
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_t00fv")
 
 [node name="Wall8" type="StaticBody2D" parent="."]
@@ -121,10 +115,7 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall8"]
 rotation = 1.5708
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_t00fv")
-
-[node name="Teamsoverlay" parent="." instance=ExtResource("2_tngj4")]
 
 [node name="debugdefensepoint0" type="Sprite2D" parent="."]
 z_index = -1
@@ -135,3 +126,7 @@ z_index = -1
 texture = ExtResource("3_8ytxh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Teamsoverlay" parent="CanvasLayer" instance=ExtResource("2_tngj4")]

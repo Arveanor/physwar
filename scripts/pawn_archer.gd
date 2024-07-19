@@ -28,7 +28,7 @@ func do_melee_combat(delta):
 				attack_timer = attack_timer_base
 				break
 		if target != null:
-			direction += (direction.orthogonal() * (randf() - 0.5))
+			direction += (direction.orthogonal() * (randf() / 2.0 - 0.5))
 			direction = direction.normalized()
 			look_at(target.global_position)
 			var arrow = arrowScene.instantiate()
