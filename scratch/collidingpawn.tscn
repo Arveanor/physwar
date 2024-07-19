@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dk7bktb2brwa8"]
+
+[node name="Collidingpawn" type="RigidBody2D"]

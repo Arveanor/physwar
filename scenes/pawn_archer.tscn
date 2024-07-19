@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://xgjscfmvt8kf"]
+
+[ext_resource type="Script" path="res://scripts/pawn_archer.gd" id="1_64iy5"]
+[ext_resource type="Shader" uid="uid://i7ihkp15t43n" path="res://shaders/pawn_blue_0.tres" id="2_56hum"]
+[ext_resource type="Texture2D" uid="uid://uwcklep1sd1t" path="res://sprites/pawn_archer.png" id="3_6pw55"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_07dfe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t21bf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6eibc"]
+resource_local_to_scene = true
+shader = ExtResource("2_56hum")
+shader_parameter/teamId = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hlrtd"]
+radius = 250.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_28qxb"]
+radius = 100.0
+
+[node name="PawnArcher" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 2147483651
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_07dfe")
+gravity_scale = 0.0
+script = ExtResource("1_64iy5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t21bf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6eibc")
+texture = ExtResource("3_6pw55")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_hlrtd")
+
+[node name="LocalSpace" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
+shape = SubResource("CircleShape2D_28qxb")

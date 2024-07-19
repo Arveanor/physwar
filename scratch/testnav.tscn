@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2ifl5v5xgkgu"]
+
+[ext_resource type="Script" path="res://scratch/NavCharacter.gd" id="1_q28pb"]
+[ext_resource type="Texture2D" uid="uid://c4n6ejgqh4nf" path="res://sprites/pawn.png" id="2_uxy8c"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ccd45"]
+vertices = PackedVector2Array(562, 624, 563, 624, 86, 628, 509, 360, 613, 426, 397, 481, 247, 394, 46, 96, -79, 139, -17, -31, 182, -26, 129, 325, 61, 281, 310, 182, 310, 306, 521, 277, 570, 130, 686, 275, 522, 277, 872, 200, 849, 359, 1016, 420, 854, 500, 943, 579, 516, 568, 395, 494, 43, 506)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(11, 12, 7, 10, 13, 14), PackedInt32Array(15, 14, 13, 16), PackedInt32Array(17, 18, 15, 16, 19), PackedInt32Array(20, 17, 19, 21), PackedInt32Array(22, 20, 21, 23), PackedInt32Array(22, 23, 0, 24), PackedInt32Array(25, 24, 0, 2, 26), PackedInt32Array(25, 26, 6, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-24, -42, 189, -36, 315, 171, 571, 120, 878, 191, 1027, 420, 950, 589, 563, 634, 80, 639, 32, 501, 244, 385, 511, 350, 638, 431, 406, 489, 518, 557, 844, 492, 839, 365, 684, 285, 522, 287, 311, 316, 128, 336, 52, 286, 37, 110, -95, 155)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yholj"]
+
+[node name="Testnav" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ccd45")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_q28pb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_yholj")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_uxy8c")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(31, 43)
+script = ExtResource("1_q28pb")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+shape = SubResource("RectangleShape2D_yholj")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D2"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
+texture = ExtResource("2_uxy8c")
+
+[node name="CharacterBody2D3" type="CharacterBody2D" parent="."]
+position = Vector2(67, -9)
+script = ExtResource("1_q28pb")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D3"]
+shape = SubResource("RectangleShape2D_yholj")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D3"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D3"]
+texture = ExtResource("2_uxy8c")
+
+[node name="CharacterBody2D4" type="CharacterBody2D" parent="."]
+position = Vector2(-12, 63)
+script = ExtResource("1_q28pb")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D4"]
+shape = SubResource("RectangleShape2D_yholj")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D4"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D4"]
+texture = ExtResource("2_uxy8c")

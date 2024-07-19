@@ -1,0 +1,146 @@
+[gd_scene load_steps=21 format=3 uid="uid://bg1xjie6vy08n"]
+
+[ext_resource type="Texture2D" uid="uid://c4n6ejgqh4nf" path="res://sprites/pawn.png" id="1_5qjmb"]
+[ext_resource type="Script" path="res://scripts/pawn.gd" id="2_de2c8"]
+[ext_resource type="Texture2D" uid="uid://4umfespjdcul" path="res://sprites/stab_sprsh.png" id="2_jeiwk"]
+[ext_resource type="Shader" uid="uid://cnpp2vb0px1lt" path="res://shaders/pawn.tres" id="4_kluvd"]
+
+[sub_resource type="Shader" id="Shader_lpsvq"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0g82"]
+shader = SubResource("Shader_lpsvq")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tenf6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytxvn"]
+atlas = ExtResource("2_jeiwk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkco4"]
+atlas = ExtResource("2_jeiwk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66t17"]
+atlas = ExtResource("2_jeiwk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvi5m"]
+atlas = ExtResource("2_jeiwk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyt0l"]
+atlas = ExtResource("2_jeiwk")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3njn0"]
+atlas = ExtResource("2_jeiwk")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qid2t"]
+atlas = ExtResource("2_jeiwk")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4qe1"]
+atlas = ExtResource("2_jeiwk")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_55jos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytxvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkco4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66t17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvi5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyt0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3njn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qid2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4qe1")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f1y5d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktm6e"]
+resource_local_to_scene = true
+shader = ExtResource("4_kluvd")
+shader_parameter/teamId = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lum7p"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y47ps"]
+radius = 80.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+material = SubResource("ShaderMaterial_j0g82")
+collision_layer = 0
+collision_mask = 2147483651
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_tenf6")
+gravity_scale = 0.0
+script = ExtResource("2_de2c8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(50, 1)
+sprite_frames = SubResource("SpriteFrames_55jos")
+animation = &"attack"
+frame = 7
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f1y5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ktm6e")
+texture = ExtResource("1_5qjmb")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_lum7p")
+
+[node name="LocalSpace" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
+shape = SubResource("CircleShape2D_y47ps")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

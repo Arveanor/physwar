@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjyf32ddeates"]
+
+[ext_resource type="Script" path="res://scripts/spawnpoint.gd" id="1_cya77"]
+[ext_resource type="Texture2D" uid="uid://bpb7h2gbngypg" path="res://sprites/spawner.png" id="1_tqoub"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlpab"]
+size = Vector2(25, 25)
+
+[node name="Spawnpoint" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_cya77")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_tqoub")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mlpab")

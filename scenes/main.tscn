@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://wipk7pybr37i"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_m5xr3"]
+[ext_resource type="PackedScene" uid="uid://bjyf32ddeates" path="res://scenes/spawnpoint.tscn" id="2_j08m2"]
+[ext_resource type="PackedScene" uid="uid://dy37y8yc2nwaf" path="res://scenes/teamsoverlay.tscn" id="3_i3nob"]
+[ext_resource type="Texture2D" uid="uid://bpqi3u1vjyjve" path="res://icon.svg" id="4_b0j3g"]
+[ext_resource type="PackedScene" uid="uid://bvin7jyxud2qc" path="res://scenes/wall.tscn" id="5_4pvas"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_q4x2u"]
+vertices = PackedVector2Array(352, 621, 32, 402, -27, 165, 12, 24, 458, 193, 631, 524, 1053, 104, 1073, 338, 1005, 580)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(5, 4, 6, 7, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(5, 11, 459, 183, 1063, 93, 1063, 93, 1083, 341, 1013, 592, 632, 534, 350, 632, 24, 408, -38, 165, -16.3461, 87.4487)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_m5xr3")
+
+[node name="Spawnpoint1" parent="." instance=ExtResource("2_j08m2")]
+position = Vector2(926, 387)
+
+[node name="Spawnpoint2" parent="." instance=ExtResource("2_j08m2")]
+position = Vector2(153, 265)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_q4x2u")
+
+[node name="debugdefensepoint0" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("4_b0j3g")
+
+[node name="debugdefensepoint1" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("4_b0j3g")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Teamsoverlay" parent="CanvasLayer" instance=ExtResource("3_i3nob")]
+
+[node name="Wall" parent="." instance=ExtResource("5_4pvas")]
+position = Vector2(-23, 83)
+rotation = 0.296706
+scale = Vector2(1, 5)
+
+[node name="Wall4" parent="." instance=ExtResource("5_4pvas")]
+position = Vector2(-16, 282)
+rotation = -0.244346
+scale = Vector2(1, 8)
+
+[node name="Wall5" parent="." instance=ExtResource("5_4pvas")]
+position = Vector2(181, 525)
+rotation = -0.977384
+scale = Vector2(1, 13)
+
+[node name="Wall2" parent="." instance=ExtResource("5_4pvas")]
+position = Vector2(491, 590)
+rotation = 1.23918
+scale = Vector2(1, 10)
+
+[node name="Wall3" parent="." instance=ExtResource("5_4pvas")]
+position = Vector2(823, 570)
+rotation = 1.72788
+scale = Vector2(1, 12)
+
+[node name="Wall9" parent="." instance=ExtResource("5_4pvas")]
+position = Vector2(1055, 473)
+rotation = 0.279253
+scale = Vector2(1, 9)
+
+[node name="Wall8" parent="." instance=ExtResource("5_4pvas")]
+position = Vector2(1079, 219)
+rotation = -0.10472
+scale = Vector2(1, 8)
+
+[node name="Wall7" parent="." instance=ExtResource("5_4pvas")]
+position = Vector2(766, 132)
+rotation = 1.43117
+scale = Vector2(1, 20)
+
+[node name="Wall6" parent="." instance=ExtResource("5_4pvas")]
+position = Vector2(232, 92)
+rotation = -1.20428
+scale = Vector2(1, 15)

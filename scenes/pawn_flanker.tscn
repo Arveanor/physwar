@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://5hd3kc4xnfv0"]
+
+[ext_resource type="Script" path="res://scratch/ortho_movement_pawn.gd" id="1_0xau0"]
+[ext_resource type="Texture2D" uid="uid://bfhxk0ex2v7vh" path="res://sprites/pawn_flanker.png" id="2_0el2t"]
+[ext_resource type="Shader" uid="uid://i7ihkp15t43n" path="res://shaders/pawn_blue_0.tres" id="2_qac70"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bpmlg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_45i0w"]
+resource_local_to_scene = true
+shader = ExtResource("2_qac70")
+shader_parameter/teamId = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cdgyw"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hkmgg"]
+radius = 45.0
+
+[node name="PawnFlanker" type="RigidBody2D"]
+mass = 5.0
+script = ExtResource("1_0xau0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bpmlg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_45i0w")
+texture = ExtResource("2_0el2t")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_cdgyw")
+
+[node name="LocalSpace" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
+shape = SubResource("CircleShape2D_hkmgg")

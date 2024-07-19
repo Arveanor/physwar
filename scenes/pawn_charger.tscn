@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://clu04sydluwye"]
+
+[ext_resource type="Script" path="res://scripts/pawn_charger.gd" id="1_j3e8k"]
+[ext_resource type="Shader" uid="uid://i7ihkp15t43n" path="res://shaders/pawn_blue_0.tres" id="2_2cxbs"]
+[ext_resource type="Texture2D" uid="uid://hmh1ipyssupc" path="res://sprites/pawn_charger.png" id="2_ki0rk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ojnav"]
+radius = 15.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6b60"]
+shader = ExtResource("2_2cxbs")
+shader_parameter/teamId = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ojf7"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqsxu"]
+
+[node name="PawnCharger" type="RigidBody2D"]
+collision_mask = 2147483649
+linear_damp_mode = 1
+script = ExtResource("1_j3e8k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ojnav")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_u6b60")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_ki0rk")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_7ojf7")
+
+[node name="LocalSpace" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
+shape = SubResource("CircleShape2D_qqsxu")

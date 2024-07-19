@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvin7jyxud2qc"]
+
+[ext_resource type="Shader" uid="uid://keeyxyr1srth" path="res://shaders/wall.tres" id="1_73f20"]
+[ext_resource type="Texture2D" uid="uid://bj6dh1gj3al6w" path="res://sprites/brick_wall.png" id="1_dxwlo"]
+[ext_resource type="Script" path="res://scripts/wall.gd" id="1_t3mgi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kyfsi"]
+size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drqpk"]
+shader = ExtResource("1_73f20")
+shader_parameter/length_scale = 1
+
+[node name="Wall" type="StaticBody2D"]
+collision_layer = 2147483648
+collision_mask = 3
+collision_priority = 10.0
+script = ExtResource("1_t3mgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kyfsi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 3
+material = SubResource("ShaderMaterial_drqpk")
+texture = ExtResource("1_dxwlo")
