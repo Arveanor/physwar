@@ -16,7 +16,7 @@ radius = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqsxu"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bmoo"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbdyu"]
 bg_color = Color(0.801168, 0, 0.015798, 1)
 
 [node name="PawnCharger" type="RigidBody2D"]
@@ -47,11 +47,14 @@ shape = SubResource("CircleShape2D_7ojf7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
 shape = SubResource("CircleShape2D_qqsxu")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="Node2D"]
+z_index = 4
 offset_left = -25.0
 offset_top = 11.0
 offset_right = 26.0
 offset_bottom = 19.0
-theme_override_styles/background = SubResource("StyleBoxFlat_1bmoo")
+theme_override_styles/background = SubResource("StyleBoxFlat_xbdyu")
 value = 100.0
 show_percentage = false

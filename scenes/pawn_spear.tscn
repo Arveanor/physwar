@@ -104,7 +104,7 @@ radius = 55.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_y47ps"]
 radius = 120.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8hpw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5lab"]
 bg_color = Color(0.801168, 0, 0.015798, 1)
 
 [node name="RigidBody2D" type="RigidBody2D"]
@@ -146,12 +146,15 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
 shape = SubResource("CircleShape2D_y47ps")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="Node2D"]
+z_index = 4
 offset_left = -25.0
 offset_top = 11.0
 offset_right = 26.0
 offset_bottom = 19.0
-theme_override_styles/background = SubResource("StyleBoxFlat_b8hpw")
+theme_override_styles/background = SubResource("StyleBoxFlat_u5lab")
 value = 100.0
 show_percentage = false
 
