@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://15w0ac0i1obb"]
+[gd_scene load_steps=19 format=3 uid="uid://15w0ac0i1obb"]
 
 [ext_resource type="Script" path="res://scripts/pawn_shock.gd" id="1_70804"]
 [ext_resource type="Texture2D" uid="uid://4umfespjdcul" path="res://sprites/stab_sprsh.png" id="1_onexp"]
@@ -82,6 +82,9 @@ radius = 30.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_8l5yw"]
 radius = 80.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wktu"]
+bg_color = Color(0.801168, 0, 0.015798, 1)
+
 [node name="PawnShock" type="RigidBody2D"]
 collision_layer = 0
 collision_mask = 3
@@ -115,5 +118,14 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
 shape = SubResource("CircleShape2D_8l5yw")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -25.0
+offset_top = 11.0
+offset_right = 26.0
+offset_bottom = 19.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5wktu")
+value = 100.0
+show_percentage = false
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

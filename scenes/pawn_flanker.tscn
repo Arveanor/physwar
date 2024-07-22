@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://5hd3kc4xnfv0"]
+[gd_scene load_steps=9 format=3 uid="uid://5hd3kc4xnfv0"]
 
 [ext_resource type="Script" path="res://scratch/ortho_movement_pawn.gd" id="1_0xau0"]
 [ext_resource type="Texture2D" uid="uid://bfhxk0ex2v7vh" path="res://sprites/pawn_flanker.png" id="2_0el2t"]
@@ -16,6 +16,9 @@ radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hkmgg"]
 radius = 45.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ivci"]
+bg_color = Color(0.801168, 0, 0.015798, 1)
 
 [node name="PawnFlanker" type="RigidBody2D"]
 collision_layer = 0
@@ -40,6 +43,16 @@ texture = ExtResource("2_0el2t")
 shape = SubResource("CircleShape2D_cdgyw")
 
 [node name="LocalSpace" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
 shape = SubResource("CircleShape2D_hkmgg")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -25.0
+offset_top = 11.0
+offset_right = 26.0
+offset_bottom = 19.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8ivci")
+value = 100.0
+show_percentage = false

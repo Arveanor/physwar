@@ -36,6 +36,7 @@ func do_melee_combat(delta):
 			arrow.global_position = self.global_position
 			arrow.launcher = self
 			arrow.set_collision_mask_value(otherTeamId + 1, true)
+			arrow.look_at(target.global_position)
 			arrow.set_collision_layer_value(teamId + 3, true)
 			root.add_child(arrow)
 			arrow.do_impulse(direction * 950.0)

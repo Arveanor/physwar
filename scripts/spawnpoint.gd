@@ -84,7 +84,7 @@ func _ready():
 func _process(delta):
 	if(spawnCooldown <= 0):
 		#if teamId == 1:
-			#choose_upgrades()
+		choose_upgrades()
 		sling_pawn_group()
 		spawnCooldown = baseSpawnCooldown
 	else:
@@ -93,11 +93,11 @@ func _process(delta):
 func evolve_unit(unit_type):
 	if unit_type == "warrior":
 		pawnScene = load("res://scenes/pawn_spear.tscn")
-		#warrior_values.damage += shock_infantry_damage_mod
-		#warrior_values.health += shock_infantry_health_mod
-		#warrior_values.mass += shock_infantry_weight_mod
-		#warrior_values.movement_speed += shock_infantry_movement_speed_mod
-		#warrior_values.threat_level += shock_infantry_threat_level_mod
+		warrior_values.damage += shock_infantry_damage_mod
+		warrior_values.health += shock_infantry_health_mod
+		warrior_values.mass += shock_infantry_weight_mod
+		warrior_values.movement_speed += shock_infantry_movement_speed_mod
+		warrior_values.threat_level += shock_infantry_threat_level_mod
 	elif unit_type == "flanker":
 		pawn_flanker_scene = load("res://scenes/pawn_charger.tscn")
 		flanker_values.damage += charger_damage_mod

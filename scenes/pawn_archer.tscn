@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://xgjscfmvt8kf"]
+[gd_scene load_steps=10 format=3 uid="uid://xgjscfmvt8kf"]
 
 [ext_resource type="Script" path="res://scripts/pawn_archer.gd" id="1_64iy5"]
 [ext_resource type="Shader" uid="uid://i7ihkp15t43n" path="res://shaders/pawn_blue_0.tres" id="2_56hum"]
@@ -18,6 +18,9 @@ radius = 250.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_28qxb"]
 radius = 100.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdxfw"]
+bg_color = Color(0.801168, 0, 0.015798, 1)
 
 [node name="PawnArcher" type="RigidBody2D"]
 collision_layer = 0
@@ -50,3 +53,12 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
 shape = SubResource("CircleShape2D_28qxb")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -25.0
+offset_top = 11.0
+offset_right = 26.0
+offset_bottom = 19.0
+theme_override_styles/background = SubResource("StyleBoxFlat_gdxfw")
+value = 100.0
+show_percentage = false

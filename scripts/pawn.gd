@@ -3,9 +3,11 @@ extends RigidBody2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var attack_area = $AttackArea
 @onready var local_space = $LocalSpace
-@onready var root = get_tree().root.get_child(0)
 @onready var sprite = $Sprite2D
 @onready var attack_animation = $AnimatedSprite2D
+@onready var health_bar = $HealthBar
+@onready var root = get_tree().root.get_child(0)
+
 
 # not necessarily max, but the max we will still accelerate too
 var max_linear_velocity = 85.0 
@@ -92,6 +94,7 @@ func _physics_process(delta):
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	health_bar.set_rotation(0)
 	if is_attacking == true:
 		return
 	do_melee_combat(delta)
@@ -115,6 +118,7 @@ func do_melee_combat(delta):
 
 func handle_incoming_attack(attacker, baseDamage):
 	health = health - baseDamage
+	health_bar.set_value_no_signal((float(health) / float(max_health)) * 100.0)
 	if(health <= 0):
 		if(attacker != null):
 			attacker.credit_kill(self)

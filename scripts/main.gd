@@ -8,6 +8,8 @@ var battle_summary_scene = preload("res://scenes/battlesummary.tscn")
 
 @onready var debug0 = $debugdefensepoint0
 @onready var debug1 = $debugdefensepoint1
+@onready var debug2 = $debugdefensepoint2
+@onready var debug3 = $debugdefensepoint3
 
 @onready var camera = $Camera2D
 var camera_speed = 30.0
@@ -27,7 +29,7 @@ func _ready():
 	Spawnpoint2.spawn_forward_vec = Vector2(20, 0.0)
 	
 	Spawnpoint1.evolve_unit("warrior")
-	#Spawnpoint2.evolve_unit("flanker")
+	Spawnpoint2.evolve_unit("flanker")
 	
 	Spawnpoint1.archer_spawn_count = 1
 	Spawnpoint1.melee_spawn_count = 0
@@ -136,8 +138,8 @@ func get_agressive_flank_position(teamId, flanker_location):
 
 	location_a = enemy_team_pos + vec_from_enemy_orth
 	location_b = enemy_team_pos - vec_from_enemy_orth
-	debug0.global_position = location_a
-	debug1.global_position = location_b
+	#debug0.global_position = location_a
+	#debug1.global_position = location_b
 	if flanker_location.distance_to(location_b) < flanker_location.distance_to(location_a):
 		return location_b
 	else:
@@ -149,8 +151,13 @@ func get_defensive_flank_position(teamId, flanker_location):
 	var location_a = ally_team_pos + vec_to_base_ortho
 	var location_b = ally_team_pos - vec_to_base_ortho
 	
-	debug0.global_position = location_a
-	debug1.global_position = location_b
+	if teamId == 0:
+		debug0.global_position = location_a
+		debug1.global_position = location_b
+	else:
+		debug2.global_position = location_a
+		debug3.global_position = location_b
+
 	if flanker_location.distance_to(location_b) < flanker_location.distance_to(location_a):
 		return location_b
 	else:

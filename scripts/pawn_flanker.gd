@@ -102,3 +102,23 @@ func fall_back():
 
 func get_positional_danger():
 	return 0
+
+func decision_tree(delta):
+	#move towards enemy or move towards team defensive position
+	if is_surrounded():
+		fall_back()
+	else:
+		search_for_target()
+
+func is_surrounded():
+	var nearbyAllies = self.threat_level + self.bravery
+	var danger_quantum = get_positional_danger()
+	nearbyAllies = nearbyAllies - int(danger_quantum)
+	var nearbyEnemies = 0
+	if(local_space.has_overlapping_bodies()):
+		for pawn in local_space.get_overlapping_bodies():
+			if(pawn.teamId == teamId):
+				nearbyAllies = nearbyAllies + (pawn.threat_level + pawn.threat_support) * self.trust_level
+			else:
+				nearbyEnemies = nearbyEnemies + pawn.threat_level
+	return nearbyEnemies > nearbyAllies
