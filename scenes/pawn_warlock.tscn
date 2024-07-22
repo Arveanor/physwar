@@ -1,0 +1,132 @@
+[gd_scene load_steps=19 format=3 uid="uid://dahwpftxwgvpf"]
+
+[ext_resource type="Texture2D" uid="uid://4umfespjdcul" path="res://sprites/stab_sprsh.png" id="1_1kds3"]
+[ext_resource type="Script" path="res://scripts/pawn_warlock.gd" id="1_35y6m"]
+[ext_resource type="Shader" uid="uid://cnpp2vb0px1lt" path="res://shaders/pawn.tres" id="2_acesf"]
+[ext_resource type="Texture2D" uid="uid://c4n6ejgqh4nf" path="res://sprites/pawn.png" id="3_bg0p3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytxvn"]
+atlas = ExtResource("1_1kds3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkco4"]
+atlas = ExtResource("1_1kds3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66t17"]
+atlas = ExtResource("1_1kds3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvi5m"]
+atlas = ExtResource("1_1kds3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyt0l"]
+atlas = ExtResource("1_1kds3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3njn0"]
+atlas = ExtResource("1_1kds3")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qid2t"]
+atlas = ExtResource("1_1kds3")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4qe1"]
+atlas = ExtResource("1_1kds3")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_53w75"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytxvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkco4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66t17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvi5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyt0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3njn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qid2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4qe1")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrrcq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l50lf"]
+resource_local_to_scene = true
+shader = ExtResource("2_acesf")
+shader_parameter/teamId = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xd0tp"]
+radius = 170.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iv3co"]
+radius = 80.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0b24"]
+bg_color = Color(0.801168, 0, 0.015798, 1)
+
+[node name="PawnWarlock" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_35y6m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(50, 1)
+sprite_frames = SubResource("SpriteFrames_53w75")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vrrcq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_l50lf")
+texture = ExtResource("3_bg0p3")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_xd0tp")
+
+[node name="LocalSpace" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
+shape = SubResource("CircleShape2D_iv3co")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="Node2D"]
+z_index = 4
+offset_left = -25.0
+offset_top = 11.0
+offset_right = 26.0
+offset_bottom = 19.0
+theme_override_styles/background = SubResource("StyleBoxFlat_y0b24")
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true

@@ -16,9 +16,13 @@ var camera_speed = 30.0
 
 var team0pawns = []
 var team1pawns = []
+@onready var slow_process_timer = Timer.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.add_child(slow_process_timer)
+	slow_process_timer.start()
+	slow_process_timer.timeout.connect(_slow_process)
 	camera_setup()
 	get_tree().paused = false
 	randomize()
@@ -28,7 +32,7 @@ func _ready():
 	Spawnpoint1.spawn_forward_vec = Vector2(-20, 0.0)
 	Spawnpoint2.spawn_forward_vec = Vector2(20, 0.0)
 	
-	#Spawnpoint1.evolve_unit("warrior")
+	Spawnpoint1.evolve_unit("archer")
 	#Spawnpoint2.evolve_unit("flanker")
 	
 	Spawnpoint1.archer_spawn_count = 1
@@ -42,7 +46,7 @@ func camera_setup():
 	camera.zoom = Vector2(.75, .75)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta):	
 	if Input.is_action_pressed("camera_up"):
 		camera.global_position.y -= camera_speed
 	elif Input.is_action_pressed("camera_right"):
@@ -51,6 +55,12 @@ func _process(delta):
 		camera.global_position.y += camera_speed
 	elif Input.is_action_pressed("camera_left"):
 		camera.global_position.x -= camera_speed
+		
+func _slow_process():
+	for pawn in team0pawns:
+		pawn._slow_process()
+	for pawn in team1pawns:
+		pawn._slow_process()
 		
 func get_spawn(teamId):
 	if teamId == 0:

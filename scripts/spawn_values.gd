@@ -11,6 +11,7 @@ var health = 30
 var mass = 5.0
 var movement_speed = 480.0
 var threat_level = 1
+var threat_support = 0
 var fallback_coeff = 0.9
 var max_velocity = 85.0
 

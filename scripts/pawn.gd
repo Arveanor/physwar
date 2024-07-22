@@ -9,6 +9,7 @@ extends RigidBody2D
 @onready var health_bar_holder = $Node2D
 @onready var root = get_tree().root.get_child(0)
 
+var debuff_list = []
 
 # not necessarily max, but the max we will still accelerate too
 var max_linear_velocity = 85.0 
@@ -101,6 +102,10 @@ func _process(delta):
 		return
 	do_melee_combat(delta)
 	decision_tree(delta)
+
+func _slow_process():
+	for debuff in debuff_list:
+		debuff.countdown()
 
 func do_melee_combat(delta):
 	if(attack_timer > 0):
@@ -199,3 +204,12 @@ func target_reached():
 func _on_animated_sprite_2d_animation_finished():
 	is_attacking = false
 	attack_animation.visible = false
+
+func add_debuff(debuff):
+	debuff_list.push_back(debuff)
+	self.add_child(debuff)
+	debuff.target = self
+	debuff.apply_debuff()
+	
+func remove_debuff(debuff):
+	debuff_list.erase(debuff)

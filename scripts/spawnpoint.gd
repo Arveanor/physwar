@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 var pawnScene = preload("res://scenes/pawn.tscn")
-var pawnArcherScene = preload("res://scenes/pawn_archer.tscn")
+var pawn_archer_scene = preload("res://scenes/pawn_archer.tscn")
 var pawn_flanker_scene = preload("res://scenes/pawn_flanker.tscn")
 var spawn_values_script = preload("res://scripts/spawn_values.gd")
 var ai_manager_script = preload("res://scripts/ai_manager.gd")
@@ -46,6 +46,10 @@ var shock_infantry_weight_mod = 1.0
 var shock_infantry_movement_speed_mod = 70.0
 var shock_infantry_threat_level_mod = 0
 var shock_infantry_bravery_mod = 0
+
+var warlock_damage_mod = 0
+var warlock_health_mod = 2
+var warlock_threat_support_mod = 1
 
 var pawns_spawned = 0
 
@@ -105,6 +109,10 @@ func evolve_unit(unit_type):
 		flanker_values.mass += charger_weight_mod
 		flanker_values.movement_speed += charger_movement_speed_mod
 		flanker_values.max_velocity += charger_max_velocity_mod
+	elif unit_type == "archer":
+		pawn_archer_scene = load("res://scenes/pawn_warlock.tscn")
+		archer_values.health += warlock_health_mod
+		archer_values.threat_support += warlock_threat_support_mod
 
 func choose_upgrades(): #only meant for ai opponents
 	var lowest_cost
@@ -143,7 +151,7 @@ func sling_pawn_group():
 	
 	archer_values.spawn_budget += 1.0
 	while archer_values.spawn_budget >= archer_values.spawn_cost:
-		var pawn_archer = pawnArcherScene.instantiate()
+		var pawn_archer = pawn_archer_scene.instantiate()
 		pawn_archer.global_position = spawn_location
 		pawn_archer.teamId = self.teamId
 		pawn_archer.otherTeamId = self.otherTeamId
