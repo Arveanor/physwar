@@ -5,7 +5,8 @@ extends RigidBody2D
 @onready var local_space = $LocalSpace
 @onready var sprite = $Sprite2D
 @onready var attack_animation = $AnimatedSprite2D
-@onready var health_bar = $HealthBar
+@onready var health_bar = $Node2D/HealthBar
+@onready var health_bar_holder = $Node2D
 @onready var root = get_tree().root.get_child(0)
 
 
@@ -94,7 +95,7 @@ func _physics_process(delta):
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	health_bar.set_rotation(0)
+	health_bar_holder.set_rotation(0 - self.rotation)
 	if is_attacking == true:
 		return
 	do_melee_combat(delta)

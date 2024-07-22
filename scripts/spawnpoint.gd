@@ -141,29 +141,29 @@ func sling_pawn_group():
 	var current_spawn_location = spawn_location
 	var count = 0
 	
-	archer_values.spawn_budget += 1.0
-	while archer_values.spawn_budget >= archer_values.spawn_cost:
-		var pawn_archer = pawnArcherScene.instantiate()
-		pawn_archer.global_position = spawn_location
-		pawn_archer.teamId = self.teamId
-		pawn_archer.otherTeamId = self.otherTeamId
-		pawn_archer.initialize_values(archer_values)
-		root.add_pawn(pawn_archer)
-		archer_values.spawn_budget -= archer_values.spawn_cost
-
-	flanker_values.spawn_budget += 1.0
-	while flanker_values.spawn_budget >= flanker_values.spawn_cost:
-		var pawn_flanker = pawn_flanker_scene.instantiate()
-		if count % 2 == 0:
-			pawn_flanker.global_position = self.global_position + Vector2(0, 180 + (count / 2) * 180)
-		else:
-			pawn_flanker.global_position = self.global_position - Vector2(0, 180 + (count / 2) * 180)
-		pawn_flanker.teamId = self.teamId
-		pawn_flanker.otherTeamId = self.otherTeamId
-		pawn_flanker.initialize_values(flanker_values)
-		root.add_pawn(pawn_flanker)
-		count += 1
-		flanker_values.spawn_budget -= flanker_values.spawn_cost
+	#archer_values.spawn_budget += 1.0
+	#while archer_values.spawn_budget >= archer_values.spawn_cost:
+		#var pawn_archer = pawnArcherScene.instantiate()
+		#pawn_archer.global_position = spawn_location
+		#pawn_archer.teamId = self.teamId
+		#pawn_archer.otherTeamId = self.otherTeamId
+		#pawn_archer.initialize_values(archer_values)
+		#root.add_pawn(pawn_archer)
+		#archer_values.spawn_budget -= archer_values.spawn_cost
+#
+	#flanker_values.spawn_budget += 1.0
+	#while flanker_values.spawn_budget >= flanker_values.spawn_cost:
+		#var pawn_flanker = pawn_flanker_scene.instantiate()
+		#if count % 2 == 0:
+			#pawn_flanker.global_position = self.global_position + Vector2(0, 180 + (count / 2) * 180)
+		#else:
+			#pawn_flanker.global_position = self.global_position - Vector2(0, 180 + (count / 2) * 180)
+		#pawn_flanker.teamId = self.teamId
+		#pawn_flanker.otherTeamId = self.otherTeamId
+		#pawn_flanker.initialize_values(flanker_values)
+		#root.add_pawn(pawn_flanker)
+		#count += 1
+		#flanker_values.spawn_budget -= flanker_values.spawn_cost
 	
 	warrior_values.spawn_budget += 1.0
 	while warrior_values.spawn_budget >= warrior_values.spawn_cost:
