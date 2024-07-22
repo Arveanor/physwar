@@ -47,6 +47,7 @@ func _ready():
 	
 	set_collision_layer_value(teamId + 1, true)
 	set_collision_mask_value(otherTeamId + 3, true) # this lets us be hit by enemy arrows
+	set_collision_mask_value(32, true)
 	attack_area.set_collision_mask_value(otherTeamId + 1, true)
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
