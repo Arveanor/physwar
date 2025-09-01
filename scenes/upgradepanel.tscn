@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dwppfk34q0tga"]
 
-[ext_resource type="Script" path="res://scripts/upgradepanel.gd" id="1_gmc8b"]
+[ext_resource type="Script" uid="uid://d34d0l74k81b" path="res://scripts/upgradepanel.gd" id="1_gmc8b"]
 
 [node name="Upgradepanel" type="HBoxContainer"]
 anchors_preset = 15

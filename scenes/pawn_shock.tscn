@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://15w0ac0i1obb"]
 
-[ext_resource type="Script" path="res://scripts/pawn_shock.gd" id="1_70804"]
+[ext_resource type="Script" uid="uid://5ieiavccbmdc" path="res://scripts/pawn_shock.gd" id="1_70804"]
 [ext_resource type="Texture2D" uid="uid://4umfespjdcul" path="res://sprites/stab_sprsh.png" id="1_onexp"]
 [ext_resource type="Shader" uid="uid://cnpp2vb0px1lt" path="res://shaders/pawn.tres" id="2_hqcyc"]
 [ext_resource type="Texture2D" uid="uid://cnso4na0vq1ht" path="res://sprites/pawn_shock.png" id="4_4f824"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://jiq4x5lh7u2e"]
 
 [ext_resource type="Texture2D" uid="uid://bpxiglsqw1yae" path="res://sprites/curse.png" id="1_rb1p2"]
-[ext_resource type="Script" path="res://scripts/curse.gd" id="1_x5ou5"]
+[ext_resource type="Script" uid="uid://gssigfodjwab" path="res://scripts/curse.gd" id="1_x5ou5"]
 
 [node name="Curse" type="Sprite2D"]
 z_index = 5

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dy37y8yc2nwaf"]
 
-[ext_resource type="Script" path="res://scripts/teamsoverlay.gd" id="1_51604"]
-[ext_resource type="Script" path="res://scripts/upgradesmenu.gd" id="2_jq6en"]
+[ext_resource type="Script" uid="uid://dwpcc7wy5kgl8" path="res://scripts/teamsoverlay.gd" id="1_51604"]
+[ext_resource type="Script" uid="uid://be8tq0hpqc3x2" path="res://scripts/upgradesmenu.gd" id="2_jq6en"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w8v0e"]
 

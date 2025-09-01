@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://keeyxyr1srth" path="res://shaders/wall.tres" id="1_73f20"]
 [ext_resource type="Texture2D" uid="uid://bj6dh1gj3al6w" path="res://sprites/brick_wall.png" id="1_dxwlo"]
-[ext_resource type="Script" path="res://scripts/wall.gd" id="1_t3mgi"]
+[ext_resource type="Script" uid="uid://b8tplgby2ohrw" path="res://scripts/wall.gd" id="1_t3mgi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyfsi"]
 size = Vector2(32, 32)

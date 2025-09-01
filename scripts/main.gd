@@ -32,7 +32,7 @@ func _ready():
 	Spawnpoint1.spawn_forward_vec = Vector2(-20, 0.0)
 	Spawnpoint2.spawn_forward_vec = Vector2(20, 0.0)
 	
-	Spawnpoint1.evolve_unit("archer")
+	#Spawnpoint1.evolve_unit("archer")
 	#Spawnpoint2.evolve_unit("flanker")
 	
 	Spawnpoint1.archer_spawn_count = 1

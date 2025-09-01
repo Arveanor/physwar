@@ -3,14 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://c4n6ejgqh4nf" path="res://sprites/pawn.png" id="1_sl6nf"]
 
 [sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_hd8fu"]
-default_input_values = [0, 1.0, 1, 1.0, 2, 0.0, 3, 0.0]
+default_input_values = [0, 1.0, 1, 1.0, 2, 1.0, 3, 0.0]
 expanded_output_ports = [0]
 op_type = 2
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_le7x7"]
 parameter_name = "teamId"
 default_value_enabled = true
-default_value = 1.0
 
 [sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_hlk63"]
 size = Vector2(500, 360)
@@ -33,7 +32,7 @@ operator = 2
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
-uniform float teamId = 1;
+uniform float teamId = 0.0;
 
 
 
@@ -64,6 +63,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-318.846, 19.2404)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(940, 120)
@@ -83,5 +83,5 @@ nodes/fragment/9/position = Vector2(140, 80)
 nodes/fragment/10/node = SubResource("VisualShaderNodeVectorCompose_hd8fu")
 nodes/fragment/10/position = Vector2(-60, 240)
 nodes/fragment/11/node = SubResource("VisualShaderNodeFloatParameter_le7x7")
-nodes/fragment/11/position = Vector2(-520, 280)
+nodes/fragment/11/position = Vector2(-460, 300)
 nodes/fragment/connections = PackedInt32Array(8, 0, 7, 2, 7, 0, 9, 0, 10, 0, 9, 1, 9, 0, 0, 0, 11, 0, 10, 2)

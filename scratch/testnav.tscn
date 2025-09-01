@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2ifl5v5xgkgu"]
 
-[ext_resource type="Script" path="res://scratch/NavCharacter.gd" id="1_q28pb"]
+[ext_resource type="Script" uid="uid://br7xs7obxrfu1" path="res://scratch/NavCharacter.gd" id="1_q28pb"]
 [ext_resource type="Texture2D" uid="uid://c4n6ejgqh4nf" path="res://sprites/pawn.png" id="2_uxy8c"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ccd45"]

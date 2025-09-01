@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://bg1xjie6vy08n"]
 
 [ext_resource type="Texture2D" uid="uid://c4n6ejgqh4nf" path="res://sprites/pawn.png" id="1_5qjmb"]
-[ext_resource type="Script" path="res://scripts/pawn.gd" id="2_de2c8"]
+[ext_resource type="Script" uid="uid://d4ml4fvxjkp6i" path="res://scripts/pawn.gd" id="2_de2c8"]
 [ext_resource type="Texture2D" uid="uid://4umfespjdcul" path="res://sprites/stab_sprsh.png" id="2_jeiwk"]
 [ext_resource type="Shader" uid="uid://cnpp2vb0px1lt" path="res://shaders/pawn.tres" id="4_kluvd"]
 
@@ -147,6 +147,7 @@ collision_mask = 3
 shape = SubResource("CircleShape2D_y47ps")
 
 [node name="Node2D" type="Node2D" parent="."]
+visible = false
 
 [node name="HealthBar" type="ProgressBar" parent="Node2D"]
 z_index = 4

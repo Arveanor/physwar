@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://5hd3kc4xnfv0"]
 
-[ext_resource type="Script" path="res://scratch/ortho_movement_pawn.gd" id="1_0xau0"]
+[ext_resource type="Script" uid="uid://bpcg70ookdimn" path="res://scratch/ortho_movement_pawn.gd" id="1_0xau0"]
 [ext_resource type="Texture2D" uid="uid://bfhxk0ex2v7vh" path="res://sprites/pawn_flanker.png" id="2_0el2t"]
 [ext_resource type="Shader" uid="uid://i7ihkp15t43n" path="res://shaders/pawn_blue_0.tres" id="2_qac70"]
 
@@ -49,6 +49,7 @@ collision_mask = 3
 shape = SubResource("CircleShape2D_hkmgg")
 
 [node name="Node2D" type="Node2D" parent="."]
+visible = false
 
 [node name="HealthBar" type="ProgressBar" parent="Node2D"]
 z_index = 4

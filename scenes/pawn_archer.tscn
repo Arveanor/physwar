@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://xgjscfmvt8kf"]
 
-[ext_resource type="Script" path="res://scripts/pawn_archer.gd" id="1_64iy5"]
+[ext_resource type="Script" uid="uid://b5wejopq3wra3" path="res://scripts/pawn_archer.gd" id="1_64iy5"]
 [ext_resource type="Shader" uid="uid://i7ihkp15t43n" path="res://shaders/pawn_blue_0.tres" id="2_56hum"]
 [ext_resource type="Texture2D" uid="uid://uwcklep1sd1t" path="res://sprites/pawn_archer.png" id="3_6pw55"]
 
@@ -55,6 +55,7 @@ collision_mask = 3
 shape = SubResource("CircleShape2D_28qxb")
 
 [node name="Node2D" type="Node2D" parent="."]
+visible = false
 
 [node name="HealthBar" type="ProgressBar" parent="Node2D"]
 z_index = 4

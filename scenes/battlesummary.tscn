@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://blv7ngjhb7yws"]
 
-[ext_resource type="Script" path="res://scripts/battlesummary.gd" id="1_dkh5s"]
+[ext_resource type="Script" uid="uid://cy6t6ygibbr5h" path="res://scripts/battlesummary.gd" id="1_dkh5s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_whm50"]
 font_size = 40

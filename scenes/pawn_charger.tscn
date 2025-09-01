@@ -1,53 +1,86 @@
-[gd_scene load_steps=9 format=3 uid="uid://clu04sydluwye"]
+[gd_scene load_steps=12 format=3 uid="uid://pbg8tv42mfa"]
 
-[ext_resource type="Script" path="res://scripts/pawn_charger.gd" id="1_j3e8k"]
-[ext_resource type="Shader" uid="uid://i7ihkp15t43n" path="res://shaders/pawn_blue_0.tres" id="2_2cxbs"]
+[ext_resource type="Script" uid="uid://daoie771rs482" path="res://scripts/pawn_charger.gd" id="1_j3e8k"]
+[ext_resource type="Shader" uid="uid://cnpp2vb0px1lt" path="res://shaders/pawn.tres" id="2_aej0i"]
 [ext_resource type="Texture2D" uid="uid://hmh1ipyssupc" path="res://sprites/pawn_charger.png" id="2_ki0rk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ojnav"]
+[sub_resource type="Shader" id="Shader_lpsvq"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0g82"]
+shader = SubResource("Shader_lpsvq")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tenf6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f1y5d"]
 radius = 15.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6b60"]
-shader = ExtResource("2_2cxbs")
-shader_parameter/teamId = 1.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktm6e"]
+resource_local_to_scene = true
+shader = ExtResource("2_aej0i")
+shader_parameter/teamId = 0.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7ojf7"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lum7p"]
 radius = 30.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qqsxu"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_y47ps"]
+radius = 80.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbdyu"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8kwc"]
 bg_color = Color(0.801168, 0, 0.015798, 1)
 
 [node name="PawnCharger" type="RigidBody2D"]
+material = SubResource("ShaderMaterial_j0g82")
 collision_layer = 0
 collision_mask = 2147483651
-linear_damp_mode = 1
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_tenf6")
+gravity_scale = 0.0
 script = ExtResource("1_j3e8k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(50, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ojnav")
+shape = SubResource("CircleShape2D_f1y5d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_u6b60")
+material = SubResource("ShaderMaterial_ktm6e")
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_ki0rk")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-shape = SubResource("CircleShape2D_7ojf7")
+shape = SubResource("CircleShape2D_lum7p")
 
 [node name="LocalSpace" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LocalSpace"]
-shape = SubResource("CircleShape2D_qqsxu")
+shape = SubResource("CircleShape2D_y47ps")
 
 [node name="Node2D" type="Node2D" parent="."]
+visible = false
 
 [node name="HealthBar" type="ProgressBar" parent="Node2D"]
 z_index = 4
@@ -55,6 +88,9 @@ offset_left = -25.0
 offset_top = 11.0
 offset_right = 26.0
 offset_bottom = 19.0
-theme_override_styles/background = SubResource("StyleBoxFlat_xbdyu")
+theme_override_styles/background = SubResource("StyleBoxFlat_b8kwc")
 value = 100.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

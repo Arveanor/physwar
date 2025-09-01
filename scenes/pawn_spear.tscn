@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://bwguvebe7og43"]
 
-[ext_resource type="Script" path="res://scripts/pawn_spear.gd" id="1_ba6l0"]
+[ext_resource type="Script" uid="uid://dk5ywjynr0lk3" path="res://scripts/pawn_spear.gd" id="1_ba6l0"]
 [ext_resource type="Texture2D" uid="uid://4umfespjdcul" path="res://sprites/stab_sprsh.png" id="2_8cmph"]
 [ext_resource type="Shader" uid="uid://cnpp2vb0px1lt" path="res://shaders/pawn.tres" id="3_rumcg"]
 [ext_resource type="Texture2D" uid="uid://c4s2trxat42ax" path="res://sprites/pawn_spear.png" id="4_8pujy"]

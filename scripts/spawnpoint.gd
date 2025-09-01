@@ -2,7 +2,7 @@ extends StaticBody2D
 
 var pawnScene = preload("res://scenes/pawn.tscn")
 var pawn_archer_scene = preload("res://scenes/pawn_archer.tscn")
-var pawn_flanker_scene = preload("res://scenes/pawn_flanker.tscn")
+var pawn_flanker_scene = preload("res://scenes/pawn_charger.tscn") # pawn_flanker.tscn
 var spawn_values_script = preload("res://scripts/spawn_values.gd")
 var ai_manager_script = preload("res://scripts/ai_manager.gd")
 
@@ -169,7 +169,9 @@ func sling_pawn_group():
 		pawn_flanker.teamId = self.teamId
 		pawn_flanker.otherTeamId = self.otherTeamId
 		pawn_flanker.initialize_values(flanker_values)
+		print("charger teamid = " + str(pawn_flanker.teamId))
 		root.add_pawn(pawn_flanker)
+		print("charger teamid = " + str(pawn_flanker.teamId))
 		count += 1
 		flanker_values.spawn_budget -= flanker_values.spawn_cost
 	

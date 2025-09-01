@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cwm0bi5s6nn1l"]
 
 [ext_resource type="PackedScene" uid="uid://bjyf32ddeates" path="res://scenes/spawnpoint.tscn" id="1_itej8"]
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_u47ns"]
+[ext_resource type="Script" uid="uid://fr208h7817rg" path="res://scripts/main.gd" id="1_u47ns"]
 [ext_resource type="PackedScene" uid="uid://dy37y8yc2nwaf" path="res://scenes/teamsoverlay.tscn" id="2_tngj4"]
 [ext_resource type="Texture2D" uid="uid://bpqi3u1vjyjve" path="res://icon.svg" id="3_8ytxh"]
 
