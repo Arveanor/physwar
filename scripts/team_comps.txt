@@ -1,0 +1,9 @@
+Just a low tech storage bin for composition types
+
+    # Classic
+	Spawnpoint1.archer_spawn_count = 1
+	Spawnpoint1.melee_spawn_count = 0
+	Spawnpoint1.flanker_spawn_count = 1
+	Spawnpoint2.archer_spawn_count = 1
+	Spawnpoint2.melee_spawn_count = 5
+	Spawnpoint2.flanker_spawn_count = 0

@@ -2,7 +2,7 @@ extends StaticBody2D
 
 var pawnScene = preload("res://scenes/pawn.tscn")
 var pawn_archer_scene = preload("res://scenes/pawn_archer.tscn")
-var pawn_flanker_scene = preload("res://scenes/pawn_charger.tscn") # pawn_flanker.tscn
+var pawn_flanker_scene = preload("res://scenes/pawn_flanker.tscn") # pawn_flanker.tscn
 var spawn_values_script = preload("res://scripts/spawn_values.gd")
 var ai_manager_script = preload("res://scripts/ai_manager.gd")
 
@@ -14,7 +14,7 @@ var flanker_values
 
 var teams_overlay
 
-@onready var baseSpawnCooldown = 20.0
+@onready var baseSpawnCooldown = 13.0
 @onready var spawnCooldown = 1.0
 var archer_spawn_count = 2
 var melee_spawn_count = 4
@@ -28,7 +28,7 @@ var spawn_bucks = 0
 var team_gold = 0
 var health = 10000
 
-var teamId
+@export var teamId = 0
 var otherTeamId
 var threat_level = 0
 var threat_support = 0
@@ -58,37 +58,19 @@ func _ready():
 	spawn_location = self.global_position
 
 	ai_manager = ai_manager_script.new()
-	warrior_values = spawn_values_script.new()
-	archer_values = spawn_values_script.new()
-	flanker_values = spawn_values_script.new()
-	
-	warrior_values.spawn_cost = 0.2
-	warrior_values.damage = 1
-	warrior_values.health = 30
-	warrior_values.mass = 5.0
-	warrior_values.movement_speed = 480.0
-	warrior_values.threat_level = 1
-	
-	archer_values.spawn_cost = 0.6
-	archer_values.damage = 1
-	archer_values.health = 3
-	archer_values.mass = 5.0
-	archer_values.movement_speed = 480.0
-	archer_values.threat_level = 0
-	archer_values.fallback_coeff = 0.9
+	if teamId == 0:
+		warrior_values = spawn_values_script.new(spawn_values_script.pawn_name.WARRIOR)
+	else:
+		warrior_values = spawn_values_script.new(spawn_values_script.pawn_name.ASSAULT_WARRIOR)
 
-	flanker_values.spawn_cost = 0.45
-	flanker_values.damage = 1
-	flanker_values.health = 30
-	flanker_values.mass = 5.0
-	flanker_values.movement_speed = 550.0
-	flanker_values.max_velocity = 100.0
+	archer_values = spawn_values_script.new(spawn_values_script.pawn_name.ARCHER)
+	flanker_values = spawn_values_script.new(spawn_values_script.pawn_name.FLANKER)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(spawnCooldown <= 0):
 		#if teamId == 1:
-		choose_upgrades()
+		#choose_upgrades()
 		sling_pawn_group()
 		spawnCooldown = baseSpawnCooldown
 	else:
@@ -152,14 +134,14 @@ func sling_pawn_group():
 	archer_values.spawn_budget += 1.0
 	while archer_values.spawn_budget >= archer_values.spawn_cost:
 		var pawn_archer = pawn_archer_scene.instantiate()
-		pawn_archer.global_position = spawn_location
+		pawn_archer.global_position = spawn_location + Vector2(0, 30) #(teamId - 1) * 40
 		pawn_archer.teamId = self.teamId
 		pawn_archer.otherTeamId = self.otherTeamId
 		pawn_archer.initialize_values(archer_values)
-		root.add_pawn(pawn_archer)
+		root.add_pawn(pawn_archer, "archer")
 		archer_values.spawn_budget -= archer_values.spawn_cost
 
-	flanker_values.spawn_budget += 1.0
+	#flanker_values.spawn_budget += 1.0
 	while flanker_values.spawn_budget >= flanker_values.spawn_cost:
 		var pawn_flanker = pawn_flanker_scene.instantiate()
 		if count % 2 == 0:
@@ -170,20 +152,22 @@ func sling_pawn_group():
 		pawn_flanker.otherTeamId = self.otherTeamId
 		pawn_flanker.initialize_values(flanker_values)
 		print("charger teamid = " + str(pawn_flanker.teamId))
-		root.add_pawn(pawn_flanker)
+		root.add_pawn(pawn_flanker, "flanker")
 		print("charger teamid = " + str(pawn_flanker.teamId))
 		count += 1
 		flanker_values.spawn_budget -= flanker_values.spawn_cost
 	
-	warrior_values.spawn_budget += 1.0
+	warrior_values.spawn_budget += 1.4
+	var i = 0
 	while warrior_values.spawn_budget >= warrior_values.spawn_cost:
 		var pawn = pawnScene.instantiate()
-		pawn.global_position = spawn_location_melee
+		pawn.global_position = spawn_location_melee + Vector2(i / 2 * 15, i % 2 * 30)
 		pawn.teamId = self.teamId
 		pawn.otherTeamId = self.otherTeamId
 		pawn.initialize_values(warrior_values)
-		root.add_pawn(pawn)
+		root.add_pawn(pawn, "warrior")
 		warrior_values.spawn_budget -= warrior_values.spawn_cost
+		i = i + 1 
 		
 func handle_incoming_attack(attacker, baseDamage):
 	health = health - baseDamage
@@ -202,10 +186,10 @@ func set_team_id(_teamId, _otherTeamId):
 	otherTeamId = _otherTeamId
 	if teamId == 0:
 		spawn_location = spawn_location - Vector2(20, 0)
-		spawn_location_melee = spawn_location - Vector2(20, 0)
+		spawn_location_melee = spawn_location - Vector2(20, 20)
 	else:
 		spawn_location = spawn_location + Vector2(20, 0)
-		spawn_location_melee = spawn_location + Vector2(20, 0)
+		spawn_location_melee = spawn_location + Vector2(20, 20)
 	set_collision_layer_value(teamId + 1, true)
 	set_collision_mask_value(otherTeamId + 1, true)
 

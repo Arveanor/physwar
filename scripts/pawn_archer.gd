@@ -28,7 +28,7 @@ func do_melee_combat(delta):
 				attack_timer = attack_timer_base
 				break
 		if target != null:
-			direction += (direction.orthogonal() * (randf() / 2.0 - 0.5))
+			direction += (direction.orthogonal() * (randf() / 2.0 - 0.25))
 			direction = direction.normalized()
 			look_at(target.global_position)
 			var arrow = arrowScene.instantiate()
@@ -48,3 +48,11 @@ func is_surrounded():
 			if(pawn.teamId == otherTeamId):
 				nearbyEnemies = nearbyEnemies + 1
 	return nearbyEnemies > 0
+
+func handle_incoming_attack(attacker, baseDamage):
+	super(attacker, baseDamage)
+	if health <= 0:
+		if teamId == 0:
+			root.team0archers -= 1
+		else:
+			root.team1archers -= 1

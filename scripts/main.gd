@@ -15,7 +15,9 @@ var battle_summary_scene = preload("res://scenes/battlesummary.tscn")
 var camera_speed = 30.0
 
 var team0pawns = []
+var team0archers = 0
 var team1pawns = []
+var team1archers = 0
 @onready var slow_process_timer = Timer.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -74,11 +76,15 @@ func kill_green():
 		pawn = team0pawns.pop_back()
 		pawn.queue_free()
 
-func add_pawn(pawn):
+func add_pawn(pawn, unit_type):
 	if pawn.teamId == 0:
+		if unit_type == "archer":
+			team0archers += 1
 		team0pawns.push_back(pawn)
 		pawn.get_node("Sprite2D").material.set_shader_parameter("teamId", 0.0)
 	else:
+		if unit_type == "archer":
+			team1archers += 1
 		pawn.get_node("Sprite2D").material.set_shader_parameter("teamId", 1.0)
 		team1pawns.push_back(pawn)
 
@@ -128,10 +134,13 @@ func get_defensive_position(teamId, fallback_coeff: float):
 	else:
 		spawnposition = Spawnpoint2
 	var team_average_pos = get_average_team_position(teamId)
-	var defensive_position = team_average_pos + (spawnposition.global_position - team_average_pos) * fallback_coeff
-	
+	#var defensive_position = team_average_pos + (spawnposition.global_position - team_average_pos) * fallback_coeff
+	var vector_to_spawn_normalized = (spawnposition.global_position - team_average_pos).normalized()
+	var vector_to_spawn_length = (spawnposition.global_position - team_average_pos).length()
+	var distance_from_spawn_scalar = min(1.0, vector_to_spawn_length * vector_to_spawn_length *.00001)
+	var defensive_position = team_average_pos + (vector_to_spawn_normalized * fallback_coeff * distance_from_spawn_scalar)
 	return defensive_position
-	
+
 func get_agressive_flank_position(teamId, flanker_location):
 	# ally average position - enemy average position 
 	var enemy_team_pos

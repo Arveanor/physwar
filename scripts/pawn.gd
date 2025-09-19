@@ -26,6 +26,8 @@ var threat_support = 0
 var fallback_coeff: float = 0.5
 @onready var desired_range = 10
 
+var positional_danger = 0
+
 var ally_spawn_point
 var enemy_spawn_location
 
@@ -74,6 +76,8 @@ func initialize_values(values):
 	fallback_coeff = values.fallback_coeff
 	max_linear_velocity = values.max_velocity
 	threat_level = values.threat_level
+	threat_support = values.threat_support
+	bravery = values.bravery
 
 func set_movement_target(movement_target: Vector2, isEnemy):
 	moving_to_enemy = isEnemy
@@ -145,7 +149,8 @@ func is_surrounded():
 	return nearbyEnemies > nearbyAllies
 	
 func get_positional_danger():
-	return root.get_defensive_position(teamId, fallback_coeff).distance_to(self.global_position) / 50
+	positional_danger = root.get_defensive_position(teamId, fallback_coeff).distance_to(self.global_position)
+	return positional_danger / 50
 
 func fall_back():
 	set_movement_target(root.get_defensive_position(teamId, fallback_coeff), false)
@@ -163,11 +168,20 @@ func get_nearest_enemy():
 	var nearestDistance = 99999999.0
 	var nearestPawn
 	var tempDistance = 0.0
-	for pawn in pawnList:
-		tempDistance = pawn.global_position.distance_to(self.global_position)
-		if tempDistance < nearestDistance:
-			nearestDistance = tempDistance
-			nearestPawn = pawn
+	if teamId == 1:
+		for pawn in pawnList:
+			tempDistance = pawn.global_position.distance_to(self.global_position)# - (pawn.positional_danger / 2)
+			if tempDistance < nearestDistance:
+				nearestDistance = tempDistance
+				nearestPawn = pawn
+	else:
+		for pawn in pawnList:
+			tempDistance = pawn.global_position.distance_to(self.global_position)
+			if tempDistance < nearestDistance:
+				nearestDistance = tempDistance
+				nearestPawn = pawn		
+				if nearestDistance <= 25.0:
+					break
 
 	if(nearestPawn != null):
 		return nearestPawn.global_position
