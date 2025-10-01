@@ -1,5 +1,5 @@
 extends HBoxContainer
-@onready var root = get_tree().root.get_child(0)
+@onready var root = get_tree().root.get_child(-1)
 @onready var label = $Label
 var unit_type
 var label_text = ""

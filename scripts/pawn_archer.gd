@@ -6,6 +6,7 @@ var arrowScene = preload("res://scenes/missile.tscn")
 func _ready():
 	#only need to do things here specific to archer
 	super()
+	pawn_type = "archer"
 	threat_support = 1
 	threat_level = 0
 	desired_range = 250
@@ -21,6 +22,8 @@ func do_melee_combat(delta):
 		for body in attack_area.get_overlapping_bodies():
 			if(body.teamId == otherTeamId):
 				distance = self.global_position.distance_to(body.global_position)
+				if("pawn_type" in body and body.pawn_type == "archer"):
+					distance -= 50
 				if distance < nearest:
 					nearest = distance
 					target = body

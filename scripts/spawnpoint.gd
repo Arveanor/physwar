@@ -14,7 +14,7 @@ var flanker_values
 
 var teams_overlay
 
-@onready var baseSpawnCooldown = 13.0
+@onready var baseSpawnCooldown = 22.0
 @onready var spawnCooldown = 1.0
 var archer_spawn_count = 2
 var melee_spawn_count = 4
@@ -22,11 +22,11 @@ var flanker_spawn_count = 2
 var spawn_location
 var spawn_location_melee
 var spawn_forward_vec
-@onready var root = get_tree().root.get_child(0)
+@onready var root = get_tree().root.get_child(-1)
 
 var spawn_bucks = 0
 var team_gold = 0
-var health = 10000
+var health = 10
 
 @export var teamId = 0
 var otherTeamId
@@ -131,7 +131,7 @@ func sling_pawn_group():
 	var current_spawn_location = spawn_location
 	var count = 0
 	
-	archer_values.spawn_budget += 1.0
+	archer_values.spawn_budget += 0.0
 	while archer_values.spawn_budget >= archer_values.spawn_cost:
 		var pawn_archer = pawn_archer_scene.instantiate()
 		pawn_archer.global_position = spawn_location + Vector2(0, 30) #(teamId - 1) * 40
@@ -161,7 +161,10 @@ func sling_pawn_group():
 	var i = 0
 	while warrior_values.spawn_budget >= warrior_values.spawn_cost:
 		var pawn = pawnScene.instantiate()
-		pawn.global_position = spawn_location_melee + Vector2(i / 2 * 15, i % 2 * 30)
+		if teamId == 0:
+			pawn.global_position = spawn_location_melee + Vector2(i / 2 * -15, i % 2 * 30)
+		else:
+			pawn.global_position = spawn_location_melee + Vector2(i / 2 * 15, i % 2 * 30)
 		pawn.teamId = self.teamId
 		pawn.otherTeamId = self.otherTeamId
 		pawn.initialize_values(warrior_values)

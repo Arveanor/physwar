@@ -24,7 +24,6 @@ position = Vector2(1342, 432)
 
 [node name="Spawnpoint2" parent="." instance=ExtResource("1_itej8")]
 position = Vector2(112, 424)
-teamId = 1
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_h5ecr")

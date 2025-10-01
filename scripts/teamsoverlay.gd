@@ -5,9 +5,11 @@ extends Control
 @onready var label3 = $VBoxContainer/Label3
 @onready var label4 = $VBoxContainer/Label4
 @onready var gold_label = $GoldLabel
-@onready var root = get_tree().root.get_child(0)
+@onready var root = get_tree().root.get_child(-1)
 
 @onready var upgrade_menu = $Upgradesmenu
+
+var iterations = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +32,9 @@ func update_label(amount):
 	gold_label.text = "gold + " + str(amount)
 
 func _on_button_pressed():
+	WinRecords.iterations += 1
+	
+#	print("iteration " + str(iterations) + ": restarting!")
 	get_tree().reload_current_scene()
 
 

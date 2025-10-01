@@ -20,8 +20,12 @@ var team1pawns = []
 var team1archers = 0
 @onready var slow_process_timer = Timer.new()
 
+var restart_count = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("restart_count = " + str(restart_count))
+	restart_count += 1
 	self.add_child(slow_process_timer)
 	slow_process_timer.start()
 	slow_process_timer.timeout.connect(_slow_process)
@@ -102,9 +106,19 @@ func get_pawn_list(teamId):
 		return team1pawns
 
 func victory(teamId):
-	var bss = battle_summary_scene.instantiate()
-	self.add_child(bss)
-	get_tree().paused = true
+	if(WinRecords.is_testing):
+		WinRecords.iterations += 1
+		if(teamId == 0):
+			WinRecords.team0wins += 1
+		else:
+			WinRecords.team1wins += 1
+		print("iterations: " + str(WinRecords.iterations) 
+		+ " t0 wins: " + str(WinRecords.team0wins) + " t1 wins: " + str(WinRecords.team1wins))
+		get_tree().reload_current_scene()
+	else:
+		var bss = battle_summary_scene.instantiate()
+		self.add_child(bss)
+		get_tree().paused = true
 
 func remove_pawn(pawn):
 	if(pawn.teamId == 0):

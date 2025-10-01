@@ -1,6 +1,6 @@
 extends Control
 
-@onready var root = get_tree().root.get_child(0)
+@onready var root = get_tree().root.get_child(-1)
 @onready var tab_bar = $TabBar
 var upgrade_panel_scene = preload("res://scenes/upgradepanel.tscn")
 var melee_upgrade_panel

@@ -58,11 +58,12 @@ func _init(_pawn_name):
 			bravery = 4
 		pawn_name.FLANKER:
 			spawn_cost = 0.45
-			damage = 1
-			health = 30
+			damage = 3
+			health = 21
 			mass = 5.0
-			movement_speed = 550.0
-			max_velocity = 100.0
+			movement_speed = 380.0
+#			max_velocity = 100.0
+			bravery = 4
 			threat_level = 1
 		pawn_name.ARCHER:
 			spawn_cost = 0.6

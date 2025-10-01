@@ -7,7 +7,7 @@ extends RigidBody2D
 @onready var attack_animation = $AnimatedSprite2D
 @onready var health_bar = $Node2D/HealthBar
 @onready var health_bar_holder = $Node2D
-@onready var root = get_tree().root.get_child(0)
+@onready var root = get_tree().root.get_child(-1)
 
 var debuff_list = []
 
@@ -19,6 +19,8 @@ var health = 35
 var threat_level = 1
 var trust_level = 1.0
 var bravery = 0
+var pawn_type = "unassigned"
+
 # allies are emboldened by support, enemies are not deterred by it
 # initially intended to let melee pawns stop retreating all the way
 # to their own archer pool
